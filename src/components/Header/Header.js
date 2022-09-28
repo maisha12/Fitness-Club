@@ -7,7 +7,9 @@ const Header = () => {
         <div className='header'>
             <img style={{ height: 110 }} src={logo} alt="" />
             <p >SPRIT FITNESS CLUB</p>
+
         </div>
+
     );
 };
 
