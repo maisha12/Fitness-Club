@@ -8,9 +8,9 @@ const product = (props) => {
             <div className='product-info'>
                 <h2>{name}</h2>
                 <h3>Age:{Age}</h3>
-                <h3>Time Requird:{Time}</h3>
+                <h3>Time Requird:{Time}s</h3>
             </div>
-            <button className='btn-cart'>
+            <button onClick={() => props.handleToCart(props.Time)} className='btn-cart'>
                 <p>Add to Cart</p>
             </button>
         </div>
