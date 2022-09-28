@@ -3,11 +3,19 @@ import Product from '../Product/Product';
 import './Fit.css'
 const Fit = () => {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
+
+    const addToCart = (Time) => {
+        console.log(Time);
+        const newCart = [...cart, Time]
+        setCart(newCart);
+    }
 
     return (
         <div className='fit-container'>
@@ -16,6 +24,7 @@ const Fit = () => {
                     products.map(product => <Product
                         key={product.name}
                         product={product}
+                        addToCart={addToCart}
                     ></Product>)
                 }
             </div>
@@ -36,7 +45,7 @@ const Fit = () => {
                     </div>
                 </div>
                 <p>Exercise Details:</p>
-                <h3 style={{ backgroundColor: 'grey' }}>Exercise Time:</h3>
+                <h3 style={{ backgroundColor: 'grey' }}>Exercise Time:{cart}</h3>
                 <p>Add a Break </p>
                 <div>
                     <button>10s</button>
