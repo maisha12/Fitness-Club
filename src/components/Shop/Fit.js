@@ -3,7 +3,8 @@ import Product from '../Product/Product';
 import './Fit.css'
 const Fit = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(0);
+    const [down, setDown] = useState(0);
 
     useEffect(() => {
         fetch('products.json')
@@ -13,9 +14,20 @@ const Fit = () => {
 
     const addToCart = (Time) => {
         console.log(Time);
-        const newCart = [...cart, Time]
+        const newCart = (parseInt(cart) + Time)
         setCart(newCart);
     }
+
+    const breakDown = (event) => {
+        console.log(event.target.innerText);
+        setDown(event.target.innerText)
+        localStorage.setItem('breakTime', event.target.innerText)
+
+    }
+    useEffect(() => {
+        const setValue = localStorage.getItem('breakTime')
+        setDown(setValue);
+    }, [])
 
     return (
         <div className='fit-container'>
@@ -45,17 +57,17 @@ const Fit = () => {
                     </div>
                 </div>
                 <p>Exercise Details:</p>
-                <h3 style={{ backgroundColor: 'grey' }}>Exercise Time:{cart}</h3>
+                <h3 style={{ backgroundColor: 'grey' }}>Exercise Time:{cart}s</h3>
                 <p>Add a Break </p>
                 <div>
-                    <button>10s</button>
-                    <button>20s</button>
-                    <button>30s</button>
-                    <button>40s</button>
-                    <button>50s</button>
+                    <button onClick={(event) => breakDown(event)}>10s</button>
+                    <button onClick={(event) => breakDown(event)}>20s</button>
+                    <button onClick={(event) => breakDown(event)}>30s</button>
+                    <button onClick={(event) => breakDown(event)}>40s</button>
+                    <button onClick={(event) => breakDown(event)}>50s</button>
 
                 </div>
-                <h3 style={{ backgroundColor: 'grey' }}>Break Time:</h3>
+                <h3 style={{ backgroundColor: 'grey' }}>Break Time:{down}</h3>
             </div>
         </div>
     );
