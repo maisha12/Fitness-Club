@@ -68,6 +68,7 @@ const Fit = () => {
 
                 </div>
                 <h3 style={{ backgroundColor: 'grey' }}>Break Time:{down}</h3>
+                <button style={{ margin: 5, backgroundColor: 'pink' }} >Activity Completed</button>
             </div>
         </div>
     );
